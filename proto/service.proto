@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "./stub";
+import "google/api/annotations.proto";
+import "user_struct.proto";
+import "collect_struct.proto";
+package stub;
+
+service FixService {
+  //图片
+  rpc GetPicCategory (GetPicCategoryReq) returns (GetPicCategoryRsp){
+    option (google.api.http) = {//获取token
+      post: "/user/login",
+      body: "*"
+    };
+  }
+
+}
