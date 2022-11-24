@@ -21,6 +21,7 @@ var RpcSrv *grpc.Server
 
 func main() {
 	confs.NewStart().BinComb(&client.Global)
+	fmt.Println(client.Global.FixServiceConf)
 	go startRpc()
 	startHttp()
 }

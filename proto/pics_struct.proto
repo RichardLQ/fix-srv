@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "./stub";
+package stub;
+
+message GetPicCategoryReq {
+  int32 user_id = 1;
+  string openid =2;
+};
+
+message GetPicCategoryRsp {
+  int32 code = 1;
+  string msg = 2;
+   repeated Photo list = 3;
+};
+
+message Photo {
+  int32 id = 1;
+  string address = 2;
+  string  name = 3;
+}
+
+
