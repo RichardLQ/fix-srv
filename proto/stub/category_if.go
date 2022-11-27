@@ -2,6 +2,7 @@ package stub
 
 import (
 	"context"
+	"github.com/RichardLQ/fix-srv/logic"
 )
 
 var UserService = &categoryServiceServer{}
@@ -16,6 +17,7 @@ func (this *categoryServiceServer) GetPicCategory(ctx context.Context, req *GetP
 		Code: 200,
 		Msg: "请求成功！",
 	}
+	err :=logic.GetPicCategory(rsp.List)
 	return &rsp,nil
 }
 

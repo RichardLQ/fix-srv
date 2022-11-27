@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/RichardLQ/confs"
-	"github.com/RichardLQ/user-srv/auth"
-	"github.com/RichardLQ/user-srv/client"
-	"github.com/RichardLQ/user-srv/proto/stub"
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"github.com/RichardLQ/fix-srv/auth"
+	"github.com/RichardLQ/fix-srv/client"
+	"github.com/RichardLQ/fix-srv/proto/stub"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 	"google.golang.org/grpc"
@@ -21,7 +21,6 @@ var RpcSrv *grpc.Server
 
 func main() {
 	confs.NewStart().BinComb(&client.Global)
-	fmt.Println(client.Global.FixServiceConf)
 	go startRpc()
 	startHttp()
 }
@@ -29,21 +28,24 @@ func main() {
 func startRpc() {
 	//启动rpc服务
 	RpcSrv := grpc.NewServer()
-	stub.RegisterUserServiceServer(RpcSrv, stub.UserService)
-	lis, _ := net.Listen("tcp", ":8083")
+	stub.RegisterFixServiceServer(RpcSrv, stub.UserService)
+	lis, _ := net.Listen("tcp", client.Global.FixServiceConf.RpcIp+":"+
+		client.Global.FixServiceConf.RpcPort)
 	RpcSrv.Serve(lis)
 }
 func startHttp() {
 	//启动http服务
 	gwmux := runtime.NewServeMux()
 	opt := []grpc.DialOption{grpc.WithInsecure()}
-	err := stub.RegisterUserServiceHandlerFromEndpoint(context.Background(),
-		gwmux, "localhost:8083", opt)
+	err := stub.RegisterFixServiceHandlerFromEndpoint(context.Background(),
+		gwmux, client.Global.FixServiceConf.RpcIp+":"+
+			client.Global.FixServiceConf.RpcPort, opt)
 	if err != nil {
 		log.Fatal(fmt.Errorf("启动rpc失败:%+v", err))
 	}
 	httpServer := &http.Server{
-		Addr: ":8082",
+		Addr: client.Global.FixServiceConf.HttpIp+":"+
+			client.Global.FixServiceConf.HttpPort,
 		//Handler: gwmux,
 		Handler: grpcHandlerFunc(RpcSrv, gwmux),
 	}

@@ -2,8 +2,8 @@ package auth
 
 import (
 	"fmt"
-	"github.com/RichardLQ/user-srv/client"
-	"github.com/RichardLQ/user-srv/model/user"
+	"github.com/RichardLQ/fix-srv/client"
+	"github.com/RichardLQ/fix-srv/model/user"
 	"github.com/dgrijalva/jwt-go"
 	"time"
 )

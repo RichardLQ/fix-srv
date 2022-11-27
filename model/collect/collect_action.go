@@ -2,8 +2,8 @@ package collect
 
 import (
 	"fmt"
-	"github.com/RichardLQ/user-srv/client"
-	"github.com/RichardLQ/user-srv/refer"
+	"github.com/RichardLQ/fix-srv/client"
+	"github.com/RichardLQ/fix-srv/refer"
 )
 
 //FindCollectList 查询收藏列表

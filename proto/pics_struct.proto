@@ -16,7 +16,8 @@ message GetPicCategoryRsp {
 message Photo {
   int32 id = 1;
   string address = 2;
-  string  name = 3;
+  string ename = 3;
+  string  zname = 4;
 }
 
 

@@ -17,7 +17,6 @@ type CostVar struct {
 
 //UserConf 运行端口
 type UserConf struct {
-	JwtKey   string
 	HttpPort string
 	HttpIp   string
 	RpcPort  string
