@@ -28,8 +28,15 @@ message GetPicList1Req {
 }
 
 message GetPicList1Rsp {
-
+    string imageid = 1;
+    string image_small = 2;
+    string image_middle = 3;
+    string image_big = 4;
+   repeated tags tags = 5;
 }
 
+message tags {
+  string tag = 1;
+}
 
 
