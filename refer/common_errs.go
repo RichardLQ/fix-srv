@@ -11,4 +11,6 @@ const (
 
 	Find_Collect_Err = 3001//查询收藏错误
 	Update_Collect_Err = 3002//更新收藏错误
+
+	Find_Piclist_Err = 4001 //查询分类列表错误
 )

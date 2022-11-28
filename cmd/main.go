@@ -7,7 +7,7 @@ import (
 	"github.com/RichardLQ/fix-srv/auth"
 	"github.com/RichardLQ/fix-srv/client"
 	"github.com/RichardLQ/fix-srv/proto/stub"
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 	"google.golang.org/grpc"

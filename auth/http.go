@@ -56,3 +56,4 @@ func SendHttpRequest(url,method ,body string,cookies []http.Cookie,headers []map
 	buf.ReadFrom(resp.Body)
 	return buf.String(),nil
 }
+
