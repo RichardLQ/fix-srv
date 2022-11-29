@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/RichardLQ/fix-srv/auth"
 	"github.com/RichardLQ/fix-srv/client"
+	"github.com/RichardLQ/fix-srv/model/banner"
 	"github.com/RichardLQ/fix-srv/refer"
 	"github.com/tidwall/gjson"
 )
@@ -37,6 +38,14 @@ func GetPicList1(limit,skip int32,typeid string) ([]gjson.Result,error) {
 	return data,nil
 }
 
-func GetBanner()  {
-	
+func GetBanner(limit ,status int32) (*[]banner.Banners,error) {
+	ban :=banner.Search{
+		Limit: limit,
+		Status: status,
+	}
+	list,err := ban.Find()
+	if err!= nil {
+		return list,err
+	}
+	return list,nil
 }

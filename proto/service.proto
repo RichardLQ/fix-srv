@@ -3,6 +3,7 @@ syntax = "proto3";
 option go_package = "./stub";
 import "google/api/annotations.proto";
 import "pics_struct.proto";
+import "banner_struct.proto";
 package stub;
 
 service FixService {

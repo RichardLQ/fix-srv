@@ -48,27 +48,7 @@ message tags {
   string tag = 2;
 }
 
-message GetBannerReq{
-  int32 limit = 1;
-}
 
-message GetBannerRsp{
-  int32 code = 1;
-  string msg = 2;
-  repeated BannerList list = 3;
-}
-
-message BannerList {
-  int32 bid = 1;
-  string imageurl = 2;
-  string title = 3;
-  int64 createtime = 4;
-  SourceTypes sourcetype = 5;
-}
-enum SourceTypes {
-  Journey = 0; //心路历程
-  Memory = 1; //记忆流沙
-}
 
 
 

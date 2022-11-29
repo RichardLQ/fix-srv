@@ -14,4 +14,6 @@ const (
 
 	Find_Piclist_Err = 4001 //查询分类列表错误
 	Find_Piccontent_Err = 4002 //查询分类内容错误
+
+	Find_Banner_Err = 4003 //查询banner错误
 )

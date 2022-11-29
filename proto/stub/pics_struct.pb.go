@@ -20,52 +20,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type SourceTypes int32
-
-const (
-	SourceTypes_Journey SourceTypes = 0 //心路历程
-	SourceTypes_Memory  SourceTypes = 1 //记忆流沙
-)
-
-// Enum value maps for SourceTypes.
-var (
-	SourceTypes_name = map[int32]string{
-		0: "Journey",
-		1: "Memory",
-	}
-	SourceTypes_value = map[string]int32{
-		"Journey": 0,
-		"Memory":  1,
-	}
-)
-
-func (x SourceTypes) Enum() *SourceTypes {
-	p := new(SourceTypes)
-	*p = x
-	return p
-}
-
-func (x SourceTypes) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (SourceTypes) Descriptor() protoreflect.EnumDescriptor {
-	return file_pics_struct_proto_enumTypes[0].Descriptor()
-}
-
-func (SourceTypes) Type() protoreflect.EnumType {
-	return &file_pics_struct_proto_enumTypes[0]
-}
-
-func (x SourceTypes) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use SourceTypes.Descriptor instead.
-func (SourceTypes) EnumDescriptor() ([]byte, []int) {
-	return file_pics_struct_proto_rawDescGZIP(), []int{0}
-}
-
 type GetPicCategory1Req struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -539,195 +493,6 @@ func (x *Tags) GetTag() string {
 	return ""
 }
 
-type GetBannerReq struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Limit int32 `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-}
-
-func (x *GetBannerReq) Reset() {
-	*x = GetBannerReq{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_pics_struct_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetBannerReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetBannerReq) ProtoMessage() {}
-
-func (x *GetBannerReq) ProtoReflect() protoreflect.Message {
-	mi := &file_pics_struct_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetBannerReq.ProtoReflect.Descriptor instead.
-func (*GetBannerReq) Descriptor() ([]byte, []int) {
-	return file_pics_struct_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *GetBannerReq) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-type GetBannerRsp struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Code int32         `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Msg  string        `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
-	List []*BannerList `protobuf:"bytes,3,rep,name=list,proto3" json:"list,omitempty"`
-}
-
-func (x *GetBannerRsp) Reset() {
-	*x = GetBannerRsp{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_pics_struct_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetBannerRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetBannerRsp) ProtoMessage() {}
-
-func (x *GetBannerRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_pics_struct_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetBannerRsp.ProtoReflect.Descriptor instead.
-func (*GetBannerRsp) Descriptor() ([]byte, []int) {
-	return file_pics_struct_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *GetBannerRsp) GetCode() int32 {
-	if x != nil {
-		return x.Code
-	}
-	return 0
-}
-
-func (x *GetBannerRsp) GetMsg() string {
-	if x != nil {
-		return x.Msg
-	}
-	return ""
-}
-
-func (x *GetBannerRsp) GetList() []*BannerList {
-	if x != nil {
-		return x.List
-	}
-	return nil
-}
-
-type BannerList struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Bid        int32       `protobuf:"varint,1,opt,name=bid,proto3" json:"bid,omitempty"`
-	Imageurl   string      `protobuf:"bytes,2,opt,name=imageurl,proto3" json:"imageurl,omitempty"`
-	Title      string      `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Createtime int64       `protobuf:"varint,4,opt,name=createtime,proto3" json:"createtime,omitempty"`
-	Sourcetype SourceTypes `protobuf:"varint,5,opt,name=sourcetype,proto3,enum=stub.SourceTypes" json:"sourcetype,omitempty"`
-}
-
-func (x *BannerList) Reset() {
-	*x = BannerList{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_pics_struct_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *BannerList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BannerList) ProtoMessage() {}
-
-func (x *BannerList) ProtoReflect() protoreflect.Message {
-	mi := &file_pics_struct_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BannerList.ProtoReflect.Descriptor instead.
-func (*BannerList) Descriptor() ([]byte, []int) {
-	return file_pics_struct_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *BannerList) GetBid() int32 {
-	if x != nil {
-		return x.Bid
-	}
-	return 0
-}
-
-func (x *BannerList) GetImageurl() string {
-	if x != nil {
-		return x.Imageurl
-	}
-	return ""
-}
-
-func (x *BannerList) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *BannerList) GetCreatetime() int64 {
-	if x != nil {
-		return x.Createtime
-	}
-	return 0
-}
-
-func (x *BannerList) GetSourcetype() SourceTypes {
-	if x != nil {
-		return x.Sourcetype
-	}
-	return SourceTypes_Journey
-}
-
 var File_pics_struct_proto protoreflect.FileDescriptor
 
 var file_pics_struct_proto_rawDesc = []byte{
@@ -776,28 +541,7 @@ var file_pics_struct_proto_rawDesc = []byte{
 	0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x65, 0x73, 0x63, 0x22, 0x28, 0x0a, 0x04,
 	0x74, 0x61, 0x67, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
 	0x52, 0x02, 0x69, 0x64, 0x12, 0x10, 0x0a, 0x03, 0x74, 0x61, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x03, 0x74, 0x61, 0x67, 0x22, 0x24, 0x0a, 0x0c, 0x47, 0x65, 0x74, 0x42, 0x61, 0x6e,
-	0x6e, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x22, 0x5a, 0x0a, 0x0c,
-	0x47, 0x65, 0x74, 0x42, 0x61, 0x6e, 0x6e, 0x65, 0x72, 0x52, 0x73, 0x70, 0x12, 0x12, 0x0a, 0x04,
-	0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65,
-	0x12, 0x10, 0x0a, 0x03, 0x6d, 0x73, 0x67, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d,
-	0x73, 0x67, 0x12, 0x24, 0x0a, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x10, 0x2e, 0x73, 0x74, 0x75, 0x62, 0x2e, 0x42, 0x61, 0x6e, 0x6e, 0x65, 0x72, 0x4c, 0x69,
-	0x73, 0x74, 0x52, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x22, 0xa3, 0x01, 0x0a, 0x0a, 0x42, 0x61, 0x6e,
-	0x6e, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x62, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x62, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x69, 0x6d, 0x61,
-	0x67, 0x65, 0x75, 0x72, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x69, 0x6d, 0x61,
-	0x67, 0x65, 0x75, 0x72, 0x6c, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x63,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x03, 0x52,
-	0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x74, 0x69, 0x6d, 0x65, 0x12, 0x31, 0x0a, 0x0a, 0x73,
-	0x6f, 0x75, 0x72, 0x63, 0x65, 0x74, 0x79, 0x70, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32,
-	0x11, 0x2e, 0x73, 0x74, 0x75, 0x62, 0x2e, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x54, 0x79, 0x70,
-	0x65, 0x73, 0x52, 0x0a, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x74, 0x79, 0x70, 0x65, 0x2a, 0x26,
-	0x0a, 0x0b, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x73, 0x12, 0x0b, 0x0a,
-	0x07, 0x4a, 0x6f, 0x75, 0x72, 0x6e, 0x65, 0x79, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x4d, 0x65,
-	0x6d, 0x6f, 0x72, 0x79, 0x10, 0x01, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f, 0x73, 0x74, 0x75, 0x62,
+	0x09, 0x52, 0x03, 0x74, 0x61, 0x67, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f, 0x73, 0x74, 0x75, 0x62,
 	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
@@ -813,32 +557,25 @@ func file_pics_struct_proto_rawDescGZIP() []byte {
 	return file_pics_struct_proto_rawDescData
 }
 
-var file_pics_struct_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_pics_struct_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_pics_struct_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_pics_struct_proto_goTypes = []interface{}{
-	(SourceTypes)(0),           // 0: stub.SourceTypes
-	(*GetPicCategory1Req)(nil), // 1: stub.GetPicCategory1Req
-	(*GetPicCategory1Rsp)(nil), // 2: stub.GetPicCategory1Rsp
-	(*Photo)(nil),              // 3: stub.Photo
-	(*GetPicList1Req)(nil),     // 4: stub.GetPicList1Req
-	(*GetPicList1Rsp)(nil),     // 5: stub.GetPicList1Rsp
-	(*PicList1)(nil),           // 6: stub.PicList1
-	(*Tags)(nil),               // 7: stub.tags
-	(*GetBannerReq)(nil),       // 8: stub.GetBannerReq
-	(*GetBannerRsp)(nil),       // 9: stub.GetBannerRsp
-	(*BannerList)(nil),         // 10: stub.BannerList
+	(*GetPicCategory1Req)(nil), // 0: stub.GetPicCategory1Req
+	(*GetPicCategory1Rsp)(nil), // 1: stub.GetPicCategory1Rsp
+	(*Photo)(nil),              // 2: stub.Photo
+	(*GetPicList1Req)(nil),     // 3: stub.GetPicList1Req
+	(*GetPicList1Rsp)(nil),     // 4: stub.GetPicList1Rsp
+	(*PicList1)(nil),           // 5: stub.PicList1
+	(*Tags)(nil),               // 6: stub.tags
 }
 var file_pics_struct_proto_depIdxs = []int32{
-	3,  // 0: stub.GetPicCategory1Rsp.list:type_name -> stub.Photo
-	6,  // 1: stub.GetPicList1Rsp.list:type_name -> stub.PicList1
-	7,  // 2: stub.PicList1.tags:type_name -> stub.tags
-	10, // 3: stub.GetBannerRsp.list:type_name -> stub.BannerList
-	0,  // 4: stub.BannerList.sourcetype:type_name -> stub.SourceTypes
-	5,  // [5:5] is the sub-list for method output_type
-	5,  // [5:5] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	2, // 0: stub.GetPicCategory1Rsp.list:type_name -> stub.Photo
+	5, // 1: stub.GetPicList1Rsp.list:type_name -> stub.PicList1
+	6, // 2: stub.PicList1.tags:type_name -> stub.tags
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_pics_struct_proto_init() }
@@ -931,56 +668,19 @@ func file_pics_struct_proto_init() {
 				return nil
 			}
 		}
-		file_pics_struct_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetBannerReq); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_pics_struct_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetBannerRsp); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_pics_struct_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BannerList); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pics_struct_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   10,
+			NumEnums:      0,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_pics_struct_proto_goTypes,
 		DependencyIndexes: file_pics_struct_proto_depIdxs,
-		EnumInfos:         file_pics_struct_proto_enumTypes,
 		MessageInfos:      file_pics_struct_proto_msgTypes,
 	}.Build()
 	File_pics_struct_proto = out.File
