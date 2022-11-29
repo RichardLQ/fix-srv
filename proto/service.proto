@@ -7,9 +7,23 @@ package stub;
 
 service FixService {
   //图片
-  rpc GetPicCategory (GetPicCategoryReq) returns (GetPicCategoryRsp){
-    option (google.api.http) = {//获取token
+  rpc GetPicCategory1 (GetPicCategory1Req) returns (GetPicCategory1Rsp){
+    option (google.api.http) = {//图片分类
       post: "/pic/category",
+      body: "*"
+    };
+  }
+
+  rpc GetPicList1 (GetPicList1Req) returns (GetPicList1Rsp){
+    option (google.api.http) = {//获取图片列表
+      post: "/pic/list",
+      body: "*"
+    };
+  }
+
+  rpc GetBanner (GetBannerReq) returns (GetBannerRsp){
+    option (google.api.http) = {//获取banner
+      post: "/index/banner",
       body: "*"
     };
   }
