@@ -74,32 +74,44 @@ func (this *categoryServiceServer) GetPicList1(ctx context.Context, req *GetPicL
 	return &rsp,nil
 }
 
-//GetBanner 获取banner栏
-func (this *categoryServiceServer) GetBanner(ctx context.Context, req *GetBannerReq) (*GetBannerRsp, error) {
-	rsp := GetBannerRsp{
+
+//GetHotPicList1 热门分类图片内容
+func (this *categoryServiceServer) GetHotPicList1(ctx context.Context, req *GetHotPicList1Req) (*GetPicList1Rsp, error) {
+	rsp := GetPicList1Rsp{
 		Code: 200,
 		Msg: "请求成功！",
 	}
-	list,err :=logic.GetBanner(req.Limit,req.Status)
+	data,err :=logic.GetHotPicList1(req.Limit,req.Skip)
 	if err != nil {
-		rsp.Code = refer.Find_Banner_Err
+		rsp.Code = refer.Find_Piccontent_Err
 		rsp.Msg = "请求失败！"
 	}
-	for i, datum := range *list {
-		status := SourceTypes_Journey
-		if datum.Status == 2 {
-			status = SourceTypes_Memory
+	for i, datum := range data {
+		tem := []*Tags{}
+		for i2, result := range gjson.Get(datum.String(),"tag").Array() {
+			fmt.Println(i2)
+			fmt.Println(result)
+			t:= Tags{
+				Id: int32(i2+1),
+				Tag: result.String(),
+			}
+			tem = append(tem,&t)
 		}
-		temp := BannerList{
-			Bid: int32(i+1),
-			Imageurl: datum.Imageurl,
-			Title: datum.Title,
-			Sourcetype: status,
+		temp := PicList1{
+			Pid: int32(i+1),
+			Imageid: gjson.Get(datum.String(),"id").String(),
+			ImageSmall: gjson.Get(datum.String(),"thumb").String(),
+			ImageMiddle: gjson.Get(datum.String(),"wp").String(),
+			ImageBig: gjson.Get(datum.String(),"img").String(),
+			Desc: gjson.Get(datum.String(),"desc").String(),
+			Tags: tem,
 		}
 		rsp.List = append(rsp.List,&temp)
 	}
-	return &rsp,err
+	return &rsp,nil
 }
+
+
 
 
 

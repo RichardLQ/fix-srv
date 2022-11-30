@@ -4,12 +4,9 @@ import (
 	"fmt"
 	"github.com/RichardLQ/fix-srv/auth"
 	"github.com/RichardLQ/fix-srv/client"
-	"github.com/RichardLQ/fix-srv/model/banner"
 	"github.com/RichardLQ/fix-srv/refer"
 	"github.com/tidwall/gjson"
 )
-
-
 
 //GetPicCategory 获取图片分类
 func GetPicCategory() ([]gjson.Result,error) {
@@ -38,14 +35,19 @@ func GetPicList1(limit,skip int32,typeid string) ([]gjson.Result,error) {
 	return data,nil
 }
 
-func GetBanner(limit ,status int32) (*[]banner.Banners,error) {
-	ban :=banner.Search{
-		Limit: limit,
-		Status: status,
+//GetHotPicList1 热门分类图片内容
+func GetHotPicList1(limit,skip int32) ([]gjson.Result,error) {
+	if client.Global.SelectType.Type == "2" {
+		skip = 1
 	}
-	list,err := ban.Find()
-	if err!= nil {
-		return list,err
+	url := fmt.Sprintf(refer.API_HOST+"v1/vertical/vertical?adult=false&first=20&order=new&limit=%d&skip=%d",limit,skip)
+	listString, err := auth.SendHttpRequest(url, "", "", nil, nil)
+	if err != nil {
+		return []gjson.Result{},err
 	}
-	return list,nil
+	data := gjson.Get(listString, "res.vertical").Array()
+	return data,nil
 }
+
+
+

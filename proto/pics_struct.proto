@@ -27,6 +27,11 @@ message GetPicList1Req {
   int32 skip = 3;//类型
 }
 
+message GetHotPicList1Req {
+  int32  limit = 1;
+  int32 skip = 2;//类型
+}
+
 message GetPicList1Rsp {
     int32 code = 1;
     string msg = 2;
